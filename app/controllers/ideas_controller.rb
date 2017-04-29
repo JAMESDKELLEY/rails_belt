@@ -16,7 +16,7 @@ class IdeasController < ApplicationController
 	end	
 
 	def show
-		@idea = Idea.find_by(params[:id])
+		@idea = Idea.find(params[:id])
 		@users = Idea.find(params[:id]).idea_likes
 	end	
 
@@ -30,7 +30,7 @@ class IdeasController < ApplicationController
 	end	
 
 	def destroy
-		Idea.find_by(params[:id]).destroy
+		Idea.find(params[:id]).destroy
 		redirect_to '/ideas'
 	end
 
