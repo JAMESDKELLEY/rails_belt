@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bright Ideas</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div>
+	<a href="/">Logout</a>
+	<h1>Hi <%= current_user.name %>!</h1>
+	<div>
+		<form action="/ideas" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<textarea cols="45" rows="5" name="idea[idea]" placeholder="Post something witty here..."></textarea>
+			<br>
+			<input type="submit" value="Idea!">
+		</form>
+		<%= flash[:errors] %>
+	</div>
+	<div>
+		<% @ideas.each do |idea| %>
+			<p><a href="/users/<%= idea.user.id %>"><%= idea.user.name %></a> says: <%= idea.idea %></p>
+			<% if idea.users.include? current_user %>
+			<a href="/likes/<%= idea.id %>" data-method="post"></a>
+			<% else %>
+			<p><a href="/like/<%= idea.id %>" data-method="post">Like</a> </p>
+			<% end %>
+			<p><a href="/ideas/<%= idea.id %>"> <%= idea.likes.count %> People</a> liked this</p>
+			<% if current_user.id == idea.user.id %>
+			<p><a href="/ideas/<%= idea.id %>" data-method="delete">Delete</a></p>
+			<% end %>
+		<% end %>
+	</div>	
+</div>
+</body>
+</html>

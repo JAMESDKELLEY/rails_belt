@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Ideas</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="profile">
+		<div>
+			Name: <%= @user.name %>
+		</div>
+		<div>
+			Alias: <%= @user.alias %>
+		</div>
+		<div>
+			Email: <%= @user.email %>
+		</div>	
+		<hr>
+		<div>
+			<p>Total number of Posts: <%= @post.count %></p>
+			<p>Total number of Likes: <%= @like.count %> </p>
+		</div>		
+	</div>
+	<div class="links">
+		<a href="/ideas">Bright Ideas</a> | <a href="/logout">Logout</a>
+	</div>
+</body>
+</html>
